@@ -29,7 +29,7 @@ function select(name,{focus=false,top=false}={}){scrollPositions[active]=window.
 tabs[0].onclick=()=>select('setup');tabs[1].onclick=()=>select('results');$('back-to-setup').onclick=()=>select('setup',{focus:true,top:true});
 for(const tab of tabs)tab.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','Home','End'].includes(e.key)){e.preventDefault();let name=e.key==='Home'?'setup':e.key==='End'?'results':active==='setup'?'results':'setup';select(name,{focus:true});}});
 $('toprun').addEventListener('click',()=>{if(!$('form').checkValidity())select('setup',{top:true});});
-function badge(){const text=$('status').textContent;$('results-badge').textContent=running?'Calculating…':ready?(/Inputs changed|compare again/i.test(text)?'Inputs changed':'Ready'):'Not calculated';}
+function badge(){const text=$('status').textContent;$('results-badge').textContent=running?'Calculating…':ready?(/Inputs changed|compare again|Invoer gewijzigd|vergelijk opnieuw/i.test(text)?'Inputs changed':'Ready'):'Not calculated';}
 new MutationObserver(badge).observe($('status'),{childList:true,subtree:true,characterData:true});
 window.BorefieldWorkspace={
 calculationStarted(){running=true;$('results-empty').hidden=ready;if(!ready){$('results-empty').querySelector('h2').textContent='Calculating your designs…';$('results-empty').querySelector('p').textContent='The selected engine is running. You can return to Model setup while it works; any later input changes will be marked.';}$('results-content').hidden=!ready;badge();select('results',{top:true});},

@@ -20,6 +20,8 @@ Borefield Explorer is an open-source, browser-based tool for screening closed-lo
 - **Nearby registered systems:** switch on Dutch **open-system, closed-system and groundwater-abstraction overlays** from the public WKO/LGR service. Click markers for available registry details.
 - **Lifetime performance and economics:** inspect brine temperatures across the project life, compare selected designs, and evaluate energy bills, maintenance and replacements against a gas-boiler reference.
 
+The interface is available in **English and Dutch**. Use the language selector beside EUR/DKK; your choice is remembered in the browser. Labels, technical explanations, geology and result charts follow the selected language. Saved JSON inputs keep the same language-independent schema.
+
 Technical inputs have **“?” explanations** with definitions, illustrative starting values and their effect on the calculation. Financial inputs and outputs support **EUR and DKK**, using an editable conversion rate.
 
 ## Geology you can see and edit
