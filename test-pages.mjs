@@ -6,3 +6,14 @@ const app=await readFile('_site/app.js','utf8'),worker=await readFile('_site/cal
 assert.equal(await readFile('_site/browser-api.mjs','utf8'),await readFile('worker/api.mjs','utf8'));
 const {handleAPI}=await import('./_site/browser-api.mjs');assert.equal((await handleAPI(new Request('https://example.test/api/regis?lat=0&lon=0'))).status,400);
 console.log('GitHub Pages subpath assets, worker/Python paths, browser API parity and validation checks passed.');
+// The repository root must also work when Pages publishes main directly.
+assert.match(await readFile('index.html','utf8'),/url=\.\/public\//);
+const sourceAPI=await import('./public/browser-api.mjs');assert.equal((await sourceAPI.handleAPI(new Request('https://example.test/api/regis?lat=0&lon=0'))).status,400);
+for(const prefix of ['public','_site/public']){
+ const page=await readFile(prefix+'/index.html','utf8');
+ for(const m of page.matchAll(/(?:href|src)="\.\/([^"?#]+)/g))await access(prefix+'/'+m[1]);
+ await access(prefix+'/browser-api.mjs');await access(prefix+'/kernel.py');
+ await access(prefix+'/vendor/pygfunction-2.3.1-py3-none-any.whl');
+}
+assert.equal(await readFile('_site/public/browser-api.mjs','utf8'),await readFile('worker/api.mjs','utf8'));
+console.log('Branch publishing entry point and /public/ compatibility checks passed.');
