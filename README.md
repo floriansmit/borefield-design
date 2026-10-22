@@ -18,6 +18,8 @@ Borefield Explorer is an open-source, browser-based tool for screening closed-lo
 - **Ground conditions:** build an editable geological column with layer depths, lithology, thermal conductivity, volumetric heat capacity and drilling rates. Presets include typical Dutch/Danish lithologies with editable thermal starting values and evidence notes.
 - **Location context:** select a map pin, enter coordinates or search a Dutch address. Preview and import a **TNO REGIS II** hydrogeological column, then review the inferred lithologies and any unclassified intervals.
 - **Nearby registered systems:** switch on Dutch **open-system, closed-system and groundwater-abstraction overlays** from the public WKO/LGR service. Click markers for available registry details.
+- **Optional regeneration:** enter twelve monthly ground-side heat-injection energies, with optional extra annual electricity and initial investment. A clearly labelled 4,000 kWh summer profile is available as an example. Regeneration is carried through lifetime brine temperatures, design feasibility and economics.
+- **Sensitivity / spider diagrams:** vary gas price, electricity price and depth around a selected design, with payback and lifetime saving plotted separately. Depth points rerun the selected thermal and pipe models; unavailable or infeasible points are marked. Base tariffs can be changed beside the plots, with gas displayed per m³.
 - **Lifetime performance and economics:** inspect brine temperatures across the project life, compare selected designs, and evaluate energy bills, maintenance and replacements against a gas-boiler reference.
 
 The interface is available in **English and Dutch**. Use the language selector beside EUR/DKK; your choice is remembered in the browser. Labels, technical explanations, geology and result charts follow the selected language. Saved JSON inputs keep the same language-independent schema.
@@ -46,7 +48,7 @@ Inspect a selected design’s cold supply and warm return temperatures month by 
 
 ![Monthly cold and warm brine temperatures, annual peak cold temperatures and the minimum-temperature limit over 25 years](docs/screenshots/temperatures.jpg)
 
-The results include annual electricity use and seasonal performance factors with circulation electricity. Export temperature histories, candidate results and annual cost series as CSV; save and restore model inputs as JSON.
+The results include annual electricity use and seasonal performance factors with circulation electricity and any entered regeneration electricity. The loop ΔT field explicitly shows “Calculated by the model” in calculated pipe modes; monthly ΔT ranges and the largest modelled peak ΔT are reported in Results. Export temperature histories, candidate results and annual cost series as CSV; save and restore model inputs as JSON.
 
 ## A simple workflow
 
@@ -68,7 +70,7 @@ The results include annual electricity use and seasonal performance factors with
 
 No Python installation or calculation server is required. The Python runtime downloads on first use of a calculated pipe model or pygfunction ground engine. Address search, geology and map overlays depend on external public data services.
 
-**This is a screening and preliminary comparison tool.** Geological layers are used to derive equivalent ground properties averaged over the drilled length; none of the ground engines resolves explicit layered heat transport or groundwater advection. A fixed buried-top-depth approximation is used for finite line sources. Heat-pump manufacturer performance maps, compressor capacity, backup heating, cooling/regeneration and detailed control schedules are not modelled. Circuits use simplified, constant brine properties and balanced flow assumptions.
+**This is a screening and preliminary comparison tool.** Geological layers are used to derive equivalent ground properties averaged over the drilled length; none of the ground engines resolves explicit layered heat transport or groundwater advection. A fixed buried-top-depth approximation is used for finite line sources. Heat-pump manufacturer performance maps, compressor capacity, backup heating, cooling equipment capacity and detailed control schedules are not modelled. Optional regeneration uses a prescribed ground-side injection profile and monthly net loads, with injection off during the heating peak. It does not calculate cooling COP, enforce maximum summer temperatures or credit cooling benefits against gas. Circuits use simplified, constant brine properties and balanced flow assumptions.
 
 The cost search only covers the specified equal-depth layout grid. Property boundaries, drilling access, permitting constraints and thermal effects from neighbouring registered systems are not automatically enforced. Verify site properties, supplier data, hydraulics and applicable requirements before using a result to select an installation.
 

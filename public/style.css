@@ -15,3 +15,5 @@ h1{font-size:clamp(26px,3.1vw,39px);max-width:1050px}.intro{max-width:950px;marg
 
 /* Language and currency controls remain adjacent on narrow screens. */
 .header-actions{flex-wrap:wrap;justify-content:flex-end}.header-actions select{max-width:140px}@media(max-width:700px){header{flex-wrap:wrap}.header-actions{flex-direction:row;align-items:center;gap:10px}.header-actions label{font-size:12px}.header-actions button{flex-basis:100%}}
+.calculated-field{display:flex;flex-direction:column;gap:6px;padding:12px;margin-top:6px;background:#edf4ef;border:1px solid #c3d5c9;border-radius:8px;min-height:44px}.calculated-field small{font-weight:400;font-size:12px;line-height:1.45}.calculated-field[hidden]{display:none}.sensitivity-plots{display:grid;grid-template-columns:1fr 1fr;gap:16px}.sensitivity-plots svg{width:100%;height:auto}#sensitivity .actions{flex-wrap:wrap}#sensitivity-status{min-height:1.5em}@media(max-width:850px){.sensitivity-plots{grid-template-columns:1fr}}
+#regeneration{margin-top:18px;border-top:1px solid var(--line);padding-top:14px}.regen-toggle{display:flex;align-items:center;gap:8px;margin:14px 0}.regen-toggle input{width:auto;margin:0}
