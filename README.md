@@ -10,6 +10,14 @@ Borefield Explorer is an open-source, browser-based tool for screening closed-lo
 
 *Illustrative 25-year calculation with 22,000 kWh/year delivered heat and an editable sand-over-clay profile. Results depend on the inputs and search bounds; the screenshots are examples, not installation recommendations.*
 
+## Simple and advanced modes
+
+Start in **Simple** mode with the house demand, heating temperature, location, borehole limits and energy prices. Expand **View assumptions** to review technical inputs, or switch to **Advanced** to open the detailed model, monthly loads, geology editor, pipe settings and search controls. Both modes use the same calculation engine and preserve all values when switching, including expert overrides loaded from JSON.
+
+Record whether annual demand and peak load are estimated, derived from a gas bill or supported by measurements/calculations. The peak must represent the house heat requirement, rather than the boiler nameplate rating. A supply-temperature selector provides editable examples for underfloor heating and radiators. Gas can be entered per m³ using the billing conversion.
+
+Simple results highlight up to three feasible alternatives with investment, first-year operating costs, minimum brine temperature and payback. Full temperature plots, selectable comparisons and sensitivity diagrams remain available.
+
 ## What you can explore
 
 - **Borehole depth and count:** search combinations of equal-depth boreholes and rank temperature-feasible candidates by discounted lifetime cost. Add custom layouts outside the search grid, such as **1 × 285 m versus 2 × 180 m**.
