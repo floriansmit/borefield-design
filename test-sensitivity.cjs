@@ -10,3 +10,19 @@ const expensive={...r,capex:1e9};assert.equal(S.economics(p,expensive,P.defaults
 const q={...p,years:2,discount:.1},fake={feasible:true,capex:100,annual:[{electricity:100},{electricity:110}]},costs={...P.defaults,gasPrice:.2,gasCapex:0,gasStanding:0,gasMaintenance:0,hpMaintenance:0};
 const expected=Array.from({length:2},(_,i)=>(q.annual/.9*.2-fake.annual[i].electricity*q.price)/(1.1**(i+1))).reduce((a,b)=>a+b,0)-100;assert.ok(Math.abs(S.economics(q,fake,costs).saving-expected)<1e-8);
 console.log('Sensitivity price direction, depth thermal/economic recalculation, coverage, no-payback, infeasibility and independent cash-flow checks passed.');
+// Absolute gas-price curve agrees with independently priced lifecycle cash flows.
+const tariff=1.66,conversion=9.77,curve=S.gasCurve(p,r,P.defaults,[tariff,tariff*1.2],conversion,true);
+for(const [i,point]of curve.entries()){
+ const c={...P.defaults,gasPrice:tariff*(i?1.2:1)/conversion};
+ const gas=P.lifecycle(p,null,c,true,true),hp=P.lifecycle(p,r,c,false,true);
+ assert.equal(point.payback,P.sustainedPayback(hp,gas));assert.equal(point.saving,gas.total-hp.total);
+}
+assert.ok(curve[1].saving>curve[0].saving);
+const differentGas=S.gasCurve(p,r,P.defaults,[tariff],11.2,true)[0];assert.ok(differentGas.saving<curve[0].saving);
+assert.equal(S.gasCurve(p,expensive,P.defaults,[0],conversion)[0].payback,null);
+assert.equal(S.gasCurve(p,impossible,P.defaults,[tariff],conversion)[0].status,'infeasible');
+assert.equal(S.gasCurve(p,impossible,P.defaults,[tariff],conversion)[0].saving,null);
+assert.throws(()=>S.gasCurve(p,r,P.defaults,[tariff],0));assert.throws(()=>S.gasCurve(p,r,P.defaults,[-1],conversion));
+const undiscounted=S.gasCurve(p,r,P.defaults,[tariff],conversion,false)[0],uc={...P.defaults,gasPrice:tariff/conversion};
+assert.equal(undiscounted.saving,P.lifecycle(p,null,uc,true,false).total-P.lifecycle(p,r,uc,false,false).total);
+console.log('Absolute gas-price curve, calorific conversion, discounting, infeasibility and horizon limits passed.');

@@ -8,5 +8,10 @@ function series(p,r,costs,changes,depthRows=[],discounted=true){return ['gas','e
 if(!design||!['ok','pending'].includes(status))return {kind,change,actual,status,payback:null,saving:null,min:design?.min??null};
 if(!design.feasible)return {kind,change,actual,status:'infeasible',payback:null,saving:null,min:design.min};
 return {kind,change,actual,status:'ok',...economics(q,design,c,discounted),min:design.min};})}));}
-root.SensitivityModel={percentages,depthPlan,economics,series};if(typeof module!=='undefined')module.exports=root.SensitivityModel;
+function gasCurve(p,r,costs,prices,kwhM3,discounted=true){
+if(!Number.isFinite(kwhM3)||kwhM3<=0)throw Error('Enter a positive gas conversion.');
+if(!Array.isArray(prices)||prices.some(v=>!Number.isFinite(v)||v<0||v/kwhM3>10))throw Error('Enter valid nonnegative gas prices.');
+return prices.map(price=>({price,status:r.feasible?'ok':'infeasible',...(r.feasible?economics(p,r,{...costs,gasPrice:price/kwhM3},discounted):{payback:null,saving:null})}));
+}
+root.SensitivityModel={percentages,depthPlan,economics,series,gasCurve};if(typeof module!=='undefined')module.exports=root.SensitivityModel;
 })(typeof window!=='undefined'?window:globalThis);

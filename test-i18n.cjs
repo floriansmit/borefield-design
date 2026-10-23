@@ -6,6 +6,10 @@ const english=fs.readFileSync('public/field-help.js','utf8').split(' window.I18n
 const {I18n,BorefieldDutch,allHelp}=context.window;I18n.registerHelp(allHelp);assert.equal(I18n.language,'nl');assert.equal(I18n.locale,'nl-NL');
 for(const [key,value]of Object.entries(allHelp)){assert(BorefieldDutch.help[key],'Missing Dutch help: '+key);assert.equal(BorefieldDutch.help[key].split('|').length,3,key);for(const part of value.split('|'))assert.notEqual(I18n.t(part),part,'Untranslated technical guidance: '+key);}
 const cases={
+ 'Gas price versus payback':'Gasprijs versus terugverdientijd',
+ 'Apply graph settings':'Grafiekinstellingen toepassen',
+ 'Gas conversion, kWh/m³':'Gasomrekening, kWh/m³',
+ 'Gas price +20%':'Gasprijs +20%',
  'Explain Electricity, EUR/kWh':'Uitleg: Elektriciteit, EUR/kWh',
  'Layer 18':'Laag 18',
  'Monthly total: 50.179,91 kWh/year':'Maandtotaal: 50.179,91 kWh/jaar',
