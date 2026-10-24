@@ -10,6 +10,16 @@ Borefield Explorer is an open-source, browser-based tool for screening closed-lo
 
 *Illustrative 25-year calculation with 22,000 kWh/year delivered heat and an editable sand-over-clay profile. Results depend on the inputs and search bounds; the screenshots are examples, not installation recommendations.*
 
+## Combine improvements in scenarios
+
+Keep the current house as a baseline and add up to three named alternatives. Each alternative can combine an explicit total heat-demand reduction, a different heating-water temperature, a peak-demand assumption and a brine-flow choice, with an additional investment. Unchanged geology, energy prices and technical settings are inherited. Annual demand reductions preserve the monthly proportions, including hot water; peak demand stays unchanged unless explicitly changed.
+
+Compare every package on the **same borefield**, or search for the **lowest discounted lifetime cost per scenario** using the configured borehole grid and construction choices. Optional flow optimization tests discrete flow settings and includes their effective resistance, pressure loss and pumping electricity. Enter a constant available-pressure limit or a pump curve in total field m³/hour versus available kPa; the curve is interpolated without extrapolation. Provisional exploration is clearly labelled as having unverified pump feasibility. Pump limits must refer to the same circuit boundary as the specified losses. This is not a pump-control simulation or installation certification.
+
+Results show lifetime cost, initial investment, operating costs, temperature, drilling and flow, with cumulative cost curves and detailed temperature/cost inspection for each feasible scenario. Additional investment is counted once; shared maintenance/replacement assumptions remain in force. Savings and payback compare against the current-house heat-pump scenario; a separate gas curve uses baseline heat demand. Scenario settings travel with saved JSON inputs, and comparisons can be exported to CSV.
+
+A visible explanation in Model setup explains why lower CV temperature can reduce electricity use yet increase ground extraction and drilling, while insulation reduces the actual heat required.
+
 ## Simple and advanced modes
 
 Start in **Simple** mode with the house demand, heating temperature, location, borehole limits and energy prices. Expand **View assumptions** to review technical inputs, or switch to **Advanced** to open the detailed model, monthly loads, geology editor, pipe settings and search controls. Both modes use the same calculation engine and preserve all values when switching, including expert overrides loaded from JSON.

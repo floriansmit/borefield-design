@@ -6,6 +6,10 @@ const english=fs.readFileSync('public/field-help.js','utf8').split(' window.I18n
 const {I18n,BorefieldDutch,allHelp}=context.window;I18n.registerHelp(allHelp);assert.equal(I18n.language,'nl');assert.equal(I18n.locale,'nl-NL');
 for(const [key,value]of Object.entries(allHelp)){assert(BorefieldDutch.help[key],'Missing Dutch help: '+key);assert.equal(BorefieldDutch.help[key].split('|').length,3,key);for(const part of value.split('|'))assert.notEqual(I18n.t(part),part,'Untranslated technical guidance: '+key);}
 const cases={
+ 'Lower water temperature ≠ lower heat demand':'Lagere watertemperatuur ≠ lagere warmtevraag',
+ 'Compare complete scenarios':'Complete scenario’s vergelijken',
+ 'Compare scenarios ↗':'Vergelijk scenario’s ↗',
+ 'Keep the same borefield for every scenario':'Gebruik hetzelfde boorveld voor alle scenario’s',
  'Gas price versus payback':'Gasprijs versus terugverdientijd',
  'Apply graph settings':'Grafiekinstellingen toepassen',
  'Gas conversion, kWh/m³':'Gasomrekening, kWh/m³',
