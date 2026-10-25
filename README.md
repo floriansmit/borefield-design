@@ -2,19 +2,29 @@
 
 **From a building’s heat demand and local geology to a comparison of borehole layouts, heat-pump performance and lifetime costs.**
 
-Borefield Explorer is an open-source, browser-based tool for screening closed-loop ground-source heat-pump systems. Explore whether one deep borehole or several shallower holes offer a better balance of brine temperatures, drilling costs and operating costs—and compare U-tube and coaxial constructions using the same assumptions.
+Borefield Explorer is an open-source, browser-based planning tool that connects building heat demand, layered geology, borehole heat-exchanger design and lifetime economics. Explore whether one deep borehole or several shallower holes offer a better balance of brine temperatures, drilling costs and operating costs—and compare U-tube and coaxial constructions using the same assumptions.
 
 **[Try the live tool →](https://floriansmit.github.io/borefield-design/)** · [Methods and data](public/api-docs.html) · [MIT licence](LICENSE)
 
-![Results overview showing the lowest-cost feasible candidate, seasonal performance and minimum brine temperature](docs/screenshots/results.jpg)
+![Single-design results with discounted lifetime cost, CAPEX, first-year OPEX, minimum brine temperature and pump-check status](docs/screenshots/results.jpg)
 
 *Illustrative 25-year calculation with 22,000 kWh/year delivered heat and an editable sand-over-clay profile. Results depend on the inputs and search bounds; the screenshots are examples, not installation recommendations.*
 
 ## Results from simple inspection to optimization
 
-Results start with **one selected design**: a cost summary and component breakdown, brine temperatures, and sensitivity/spider diagrams. Next comes the **custom borefield comparison**, followed by **optimization and complete scenario packages**. Selecting a scenario for inspection updates its single-design summary and plots without replacing the baseline borefield comparison.
+Results start with **one selected design**: a cost summary and component breakdown, brine temperatures, and sensitivity/spider diagrams. Next comes the **custom borefield comparison**, followed by **optimization and complete scenario packages when enabled**. Selecting a scenario for inspection updates its single-design summary and plots without replacing the baseline borefield comparison.
 
 Financial results use standard locale-aware formatting with **two decimal places** in both EUR and DKK. Lifetime costs state the model period and discount rate and include energy, maintenance and replacements; they are distinct from annual OPEX. Construction and pump-check status are visible on optimization cards. Raw calculation and CSV values retain their numerical precision.
+
+## Pump selection and flow optimization
+
+Enable model optimization and tick **Find the optimal brine flow** to search flow for every count/depth/exchanger combination. Alternatives inherit this setting; Advanced mode allows explicit overrides. The regular comparison and scenario search share a persistent worker, pipe kernels and a bounded result cache, avoiding a second Python startup. Disabled optimization hides its results section.
+
+The source-linked library contains **24 profiles across seven brands** and covers NIBE S1256, Bosch Compress 7800i LW, Viessmann Vitocal 300-G/333-G, Vaillant flexoTHERM, Stiebel Eltron WPE-I, alpha innotec WZSV, and Ecoforest ecoGEO. Profiles distinguish approximate digitized curves, conservative restricted ranges, isolated verified operating points and unavailable curves. These are **not interchangeable**. No extrapolation is used. Single-point profiles test only that total field flow, including it in the per-bore flow grid when it falls inside the entered bounds. Ecoforest profiles require a supplier curve; the older quoted unit cannot inherit the newer PRO curve.
+
+See [pump data and limitations](docs/pump-profiles.md). Manufacturer selection does not replace the heat pump COP/capacity model. Pump electricity still uses entered hydraulic efficiency and operating hours and omits internal heat-pump hydraulic losses; optimized cost differences remain screening estimates.
+
+![Shared flow-optimization checkbox and manufacturer pump selector in Model setup](docs/screenshots/pump-selection.jpg)
 
 ## Combine improvements in scenarios
 
@@ -25,6 +35,10 @@ Compare every package on the **same borefield**, or search for the **lowest disc
 Results show lifetime cost, initial investment, operating costs, temperature, drilling and flow, with cumulative cost curves and detailed temperature/cost inspection for each feasible scenario. Additional investment is counted once; shared maintenance/replacement assumptions remain in force. Savings and payback compare against the current-house heat-pump scenario; a separate gas curve uses baseline heat demand. Scenario settings travel with saved JSON inputs, and comparisons can be exported to CSV.
 
 A visible explanation in Model setup explains why lower CV temperature can reduce electricity use yet increase ground extraction and drilling, while insulation reduces the actual heat required.
+
+![Optimized current-house and lower-temperature alternatives with costs, borefield construction, flow and pump checks](docs/screenshots/optimization.jpg)
+
+*Example: annual heat and peak demand are unchanged. Lower heating-water temperature reduces electricity use while the selected temperature-feasible borefield becomes deeper. These results apply only to the illustrated inputs, discrete search range and pump assumptions.*
 
 ## Simple and advanced modes
 
@@ -104,11 +118,3 @@ The cost search only covers the specified equal-depth layout grid. Property boun
 Application code is **MIT licensed**. pygfunction, Leaflet and other dependencies retain their own licences; see [third-party notices](public/THIRD_PARTY_NOTICES.txt). Geological and map services retain their source attribution and terms, and registry coverage may be incomplete.
 
 For local development, testing and optional hosting details, see [the development guide](docs/development.md).
-
-### Pump selection and flow optimization
-
-Enable model optimization and tick **Find the optimal brine flow** to search flow for every count/depth/exchanger combination. Alternatives inherit this setting; Advanced mode allows explicit overrides. The regular comparison and scenario search share a persistent worker, pipe kernels and a bounded result cache, avoiding a second Python startup. Disabled optimization hides its results section.
-
-The source-linked pump library covers NIBE S1256, Bosch Compress 7800i LW, Viessmann Vitocal 300-G/333-G, Vaillant flexoTHERM, Stiebel Eltron WPE-I, alpha innotec WZSV, and Ecoforest ecoGEO. Profiles distinguish approximate digitized curves, conservative restricted ranges, isolated verified operating points and unavailable curves. These are **not interchangeable**. No extrapolation is used. Single-point profiles test only that total field flow, including it in the per-bore flow grid when it falls inside the entered bounds. Ecoforest profiles require a supplier curve; the older quoted unit cannot inherit the newer PRO curve.
-
-See [pump data and limitations](docs/pump-profiles.md). Manufacturer selection does not replace the heat pump COP/capacity model. Pump electricity still uses entered hydraulic efficiency and operating hours and omits internal heat-pump hydraulic losses; optimized cost differences remain screening estimates.

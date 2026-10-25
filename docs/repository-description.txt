@@ -1,0 +1,1 @@
+Open-source borefield design tool: model heat demand, layered geology, U-tube/coaxial exchangers and brine temperatures; optimize drilling and flow, compare lifetime costs and gas heating.
