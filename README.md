@@ -104,3 +104,11 @@ The cost search only covers the specified equal-depth layout grid. Property boun
 Application code is **MIT licensed**. pygfunction, Leaflet and other dependencies retain their own licences; see [third-party notices](public/THIRD_PARTY_NOTICES.txt). Geological and map services retain their source attribution and terms, and registry coverage may be incomplete.
 
 For local development, testing and optional hosting details, see [the development guide](docs/development.md).
+
+### Pump selection and flow optimization
+
+Enable model optimization and tick **Find the optimal brine flow** to search flow for every count/depth/exchanger combination. Alternatives inherit this setting; Advanced mode allows explicit overrides. The regular comparison and scenario search share a persistent worker, pipe kernels and a bounded result cache, avoiding a second Python startup. Disabled optimization hides its results section.
+
+The source-linked pump library covers NIBE S1256, Bosch Compress 7800i LW, Viessmann Vitocal 300-G/333-G, Vaillant flexoTHERM, Stiebel Eltron WPE-I, alpha innotec WZSV, and Ecoforest ecoGEO. Profiles distinguish approximate digitized curves, conservative restricted ranges, isolated verified operating points and unavailable curves. These are **not interchangeable**. No extrapolation is used. Single-point profiles test only that total field flow, including it in the per-bore flow grid when it falls inside the entered bounds. Ecoforest profiles require a supplier curve; the older quoted unit cannot inherit the newer PRO curve.
+
+See [pump data and limitations](docs/pump-profiles.md). Manufacturer selection does not replace the heat pump COP/capacity model. Pump electricity still uses entered hydraulic efficiency and operating hours and omits internal heat-pump hydraulic losses; optimized cost differences remain screening estimates.
