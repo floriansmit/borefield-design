@@ -14,7 +14,7 @@ Borefield Explorer is an open-source, browser-based planning tool that connects 
 
 Results start with **one selected design**: a cost summary and component breakdown, brine temperatures, and sensitivity/spider diagrams. Next comes the **custom borefield comparison**, followed by **optimization and complete scenario packages when enabled**. Selecting a scenario for inspection updates its single-design summary and plots without replacing the baseline borefield comparison.
 
-Financial results use standard locale-aware formatting with **two decimal places** in both EUR and DKK. Lifetime costs state the model period and discount rate and include energy, maintenance and replacements; they are distinct from annual OPEX. Construction and pump-check status are visible on optimization cards. Raw calculation and CSV values retain their numerical precision.
+Financial totals are **rounded to whole euros or kroner** to avoid suggesting precision that the uncertain inputs cannot support. Lifetime costs state the model period and discount rate and include energy, maintenance and replacements; they are distinct from annual OPEX. Construction and pump-check status are visible on optimization cards. Internal calculations retain full precision so rounding does not change design rankings or payback. Exported financial totals are rounded too; energy tariffs and per-kWh rates retain useful decimals.
 
 ## Pump selection and flow optimization
 
