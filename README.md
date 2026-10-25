@@ -10,6 +10,12 @@ Borefield Explorer is an open-source, browser-based tool for screening closed-lo
 
 *Illustrative 25-year calculation with 22,000 kWh/year delivered heat and an editable sand-over-clay profile. Results depend on the inputs and search bounds; the screenshots are examples, not installation recommendations.*
 
+## Results from simple inspection to optimization
+
+Results start with **one selected design**: a cost summary and component breakdown, brine temperatures, and sensitivity/spider diagrams. Next comes the **custom borefield comparison**, followed by **optimization and complete scenario packages**. Selecting a scenario for inspection updates its single-design summary and plots without replacing the baseline borefield comparison.
+
+Financial results use standard locale-aware formatting with **two decimal places** in both EUR and DKK. Lifetime costs state the model period and discount rate and include energy, maintenance and replacements; they are distinct from annual OPEX. Construction and pump-check status are visible on optimization cards. Raw calculation and CSV values retain their numerical precision.
+
 ## Combine improvements in scenarios
 
 Keep the current house as a baseline and add up to three named alternatives. Each alternative can combine an explicit total heat-demand reduction, a different heating-water temperature, a peak-demand assumption and a brine-flow choice, with an additional investment. Unchanged geology, energy prices and technical settings are inherited. Annual demand reductions preserve the monthly proportions, including hot water; peak demand stays unchanged unless explicitly changed.
