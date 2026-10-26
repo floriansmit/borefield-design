@@ -22,10 +22,10 @@ const cases={
  'First-year OPEX · EUR':'Bedrijfskosten jaar 1 · EUR',
  '1 borehole × 285 m · Single U-tube':'1 boring × 285 m · Enkele U-lus',
  '2 × 180 m · Coaxial · BELOW TEMPERATURE LIMIT':'2 × 180 m · Coaxiaal · ONDER TEMPERATUURGRENS',
- ['REGIS NUBRk1 · λ reference: 0.90–1.42 W/mK. '+require('./public/presets.js').clay.note]:'REGIS NUBRk1 · λ-referentie: 0.90–1.42 W/mK. '+BorefieldDutch.text[require('./public/presets.js').clay.note]
+ ['REGIS NUBRk1 · λ reference: 0.90–1.42 W/mK. '+require('../public/presets.js').clay.note]:'REGIS NUBRk1 · λ-referentie: 0.90–1.42 W/mK. '+BorefieldDutch.text[require('../public/presets.js').clay.note]
 };
 for(const [en,nl]of Object.entries(cases))assert.equal(I18n.t(en),nl);
 for(const s of ['NUBRk1','EUR','DKK','pyg-ubwt','23.16','51,172.8','285','W/(m·K)','https://www.dinoloket.nl/'])assert.equal(I18n.t(s),s,'Model identifiers and numbers must not be translated');
-for(const lithology of Object.values(require('./public/presets.js')))assert.notEqual(I18n.t(lithology.name),lithology.name,'Missing lithology: '+lithology.name);
+for(const lithology of Object.values(require('../public/presets.js')))assert.notEqual(I18n.t(lithology.name),lithology.name,'Missing lithology: '+lithology.name);
 const html=fs.readFileSync('public/index.html','utf8');assert(html.includes('id="language"'));assert(html.indexOf('id="language"')<html.indexOf('id="currency"'));assert(html.includes('./i18n-nl.js'));assert(html.includes('./i18n.js'));
 console.log('Dutch technical guidance ('+Object.keys(allHelp).length+' fields), dynamic results, money labels, lithologies and data-neutral translation checks passed.');

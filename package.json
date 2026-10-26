@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "node scripts/build-pages.mjs && node scripts/dev.mjs",
     "build": "node scripts/build-pages.mjs",
-    "test": "node test.cjs && node test-api.mjs && node test-planning.cjs && node test-pages.mjs && node test-i18n.cjs && node test-sensitivity.cjs && node test-regeneration.cjs && node test-scenarios.cjs && node test-results.cjs && node test-pumps.cjs",
+    "test": "node tests/test.cjs && node tests/test-api.mjs && node tests/test-planning.cjs && node tests/test-pages.mjs && node tests/test-i18n.cjs && node tests/test-sensitivity.cjs && node tests/test-regeneration.cjs && node tests/test-scenarios.cjs && node tests/test-results.cjs && node tests/test-pumps.cjs",
     "build:pages": "node scripts/build-pages.mjs"
   }
 }

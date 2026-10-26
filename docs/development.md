@@ -25,8 +25,8 @@ The browser runtime uses Pyodide 0.27.7 and pygfunction 2.3.1. For additional na
 
 ```sh
 python -m pip install pygfunction==2.3.1
-python test-kernel.py
-python test-pipes.py
+python tests/test-kernel.py
+python tests/test-pipes.py
 ```
 
 The default `npm test` suite does not run these additional Python scripts.
