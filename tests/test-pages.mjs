@@ -9,6 +9,8 @@ console.log('GitHub Pages subpath assets, worker/Python paths, browser API parit
 // The repository root must also work when Pages publishes main directly.
 assert.match(await readFile('index.html','utf8'),/url=\.\/public\//);
 const sourceAPI=await import('../public/browser-api.mjs');assert.equal((await sourceAPI.handleAPI(new Request('https://example.test/api/regis?lat=0&lon=0'))).status,400);
+for(const asset of ['geology-sources.mjs','fohm.mjs','puma.mjs','puma-stratigraphy.mjs','vendor/proj4.js','data/puma-estonia.json'])await readFile('_site/'+asset);
+const geology=await readFile('_site/geology-sources.mjs','utf8');assert(geology.includes("EPSG:25832"));assert(geology.includes("EPSG:25884"));
 for(const prefix of ['public','_site/public']){
  const page=await readFile(prefix+'/index.html','utf8');
  for(const m of page.matchAll(/(?:href|src)="\.\/([^"?#]+)/g))await access(prefix+'/'+m[1]);

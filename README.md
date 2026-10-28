@@ -54,7 +54,7 @@ Simple results highlight up to three feasible alternatives with investment, firs
 - **Heat-exchanger construction:** compare **single U-tube, double U-tube and coaxial** designs together for every search and custom layout, or select one construction individually. Calculated modes account for pipe geometry, grout and brine properties, effective borehole resistance, circuit pressure losses, circulation electricity and installed loop cost. A manual resistance mode is also available.
 - **Building heat demand:** enter annual delivered heat and peak heating load, or estimate them from floor area, heat loss and degree days, or a measured gas bill. Edit twelve named monthly heat demands in kWh; monthly totals and annual demand stay linked.
 - **Ground conditions:** build an editable geological column with layer depths, lithology, thermal conductivity, volumetric heat capacity and drilling rates. Presets include typical Dutch/Danish lithologies with editable thermal starting values and evidence notes.
-- **Location context:** select a map pin, enter coordinates or search a Dutch address. Preview and import a **TNO REGIS II** hydrogeological column, then review the inferred lithologies and any unclassified intervals.
+- **Location context:** select the Netherlands, Denmark or Estonia, then choose a map pin, enter coordinates or search an address/place. Preview and import **TNO REGIS II**, live **GEUS FOHM / DK-model**, or the compiled **PUMA/MOSYS** regional mesh, then review every inferred lithology and unclassified interval.
 - **Nearby registered systems:** switch on Dutch **open-system, closed-system and groundwater-abstraction overlays** from the public WKO/LGR service. Click markers for available registry details.
 - **Optional regeneration:** enter twelve monthly ground-side heat-injection energies, with optional extra annual electricity and initial investment. A clearly labelled 4,000 kWh summer profile is available as an example. Regeneration is carried through lifetime brine temperatures, design feasibility and economics.
 - **Gas price versus payback:** a full-width graph plots the actual gas tariff per m³ against sustained payback in whole years. Set your own price range, compare the base price with +20%, and export the sampled curve. Cases with no payback inside the project life are explicitly marked. The editable kWh/m³ gas conversion is visible beside the setup gas price and in the graph controls; changing it preserves the entered tariff per m³.
@@ -67,11 +67,11 @@ Technical inputs have **“?” explanations** with definitions, illustrative st
 
 ## Geology you can see and edit
 
-The 1D borehole column displays lithology colours and contacts on a true depth scale alongside the layer editor. Use a manually defined profile anywhere, or start with a Dutch REGIS import. Thermal properties remain editable because REGIS supplies hydrogeological geometry, not measured thermal conductivity or heat capacity.
+The 1D borehole column displays lithology colours and contacts on a true depth scale alongside the layer editor. Use a manually defined profile anywhere, or start with a Dutch REGIS, Danish FOHM, or Estonian PUMA/MOSYS import. Denmark may return overlapping model families, which remain separate choices. Estonia uses a regional triangular research mesh. Thermal properties remain editable because none of these sources supplies site-measured thermal conductivity or heat capacity.
 
 ![Depth-scaled lithology column beside editable sand and clay layers with thermal properties and drilling rates](docs/screenshots/geology.jpg)
 
-The preset catalogue draws on GEUS thermal-property information for comparable lithologies. Heat-capacity defaults are separate engineering estimates. Unclassified REGIS units and gaps are identified for review rather than silently replaced with invented geology.
+The preset catalogue draws on GEUS thermal-property information for comparable lithologies. Heat-capacity defaults are separate engineering estimates. Unclassified units, model gaps, mixed Estonian packages and Estonian carbonates are identified for review rather than silently replaced with invented geology. Danish carbonate is mapped only to the catalogue's chalk/soft-limestone starting analogue and still requires review.
 
 ## Compare investment and running costs
 

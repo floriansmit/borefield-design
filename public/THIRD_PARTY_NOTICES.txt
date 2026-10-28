@@ -4,6 +4,9 @@ Pyodide 0.27.7 (MPL-2.0): https://github.com/pyodide/pyodide/blob/0.27.7/LICENSE
 NumPy: BSD-3-Clause; SciPy: BSD-3-Clause (downloaded at runtime by Pyodide).
 OpenStreetMap tiles © OpenStreetMap contributors, ODbL.
 TNO REGIS dataset: source attribution TNO Geological Survey / BRO; consult dataset metadata for current licence.
+GEUS FOHM / DK-model point service: geological model geometry supplied live by the Geological Survey of Denmark and Greenland; consult https://fohm.geus.dk for source terms and model documentation.
+PUMA/MOSYS Baltic Artesian Basin model subset: compiled from the University of Latvia public VTK release (published 2012-11-29), https://www.gprm.lu.lv/lv/dati/baltbasinhgmodelis/. Citation: Virbulis et al. (2013). The source does not state an exact vertical datum in the distributed model metadata; verify before design use.
+Proj4js: MIT licence; copyright Open Source Geospatial Foundation contributors. Full licence: vendor/proj4-LICENSE.
 
 
 secondarycoolantprops-1.3-py3-none-any.whl / secondarycoolantprops-1.3.dist-info/LICENSE
