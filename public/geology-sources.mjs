@@ -43,9 +43,9 @@ export function depthLayers(profile,maxDepth){
  return {...profile,surfaceElevation:surface,maxDepth:limit,layers};
 }
 
-export async function fetchProfile(code,lat,lon,maxDepth){
+export async function fetchProfile(code,lat,lon,maxDepth,options={}){
  const point=projectedPoint(code,lat,lon);
- const profile=code==='DK'?await fetchFOHM(point.x,point.y):code==='EE'?await fetchPuma(point.x,point.y):null;
+ const profile=code==='DK'?await fetchFOHM(point.x,point.y,options):code==='EE'?await fetchPuma(point.x,point.y):null;
  if(!profile)throw Error('This source is handled by the REGIS API.');
  return depthLayers(profile,maxDepth);
 }

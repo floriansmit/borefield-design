@@ -4,3 +4,4 @@ const context={window:{I18n:{locale:'en-GB'}},document:{}};vm.createContext(cont
 console.log('Screenshot costs reproduced, cost-component balance and EN/NL/EUR/DKK currency formatting passed.');
 
 assert.equal(context.formatMoney(.268,3),'1,999','Per-kWh rates retain requested decimal precision in DKK');
+const appSource=fs.readFileSync('public/app.js','utf8');assert.match(appSource,/stroke="#a94250"/,'Cost landscape must ring glance designs in red');assert.match(appSource,/PumpCatalog\.get\(parameters\.scenarios\.pump\.modelId\)/,'Optimization winner must name the selected heat pump');assert.match(fs.readFileSync('public/modes.js','utf8'),/const choices=feasibleGlance\(\)/,'Cards and plot must share the same shortlist selection');

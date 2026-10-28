@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {countryConfig,depthLayers,presetFor,projectedPoint,resolveDanishAddress,searchAddress} from '../public/geology-sources.mjs';
+import {fetchFOHM} from '../public/fohm.mjs';
 
 test('the three supported geology countries stay distinct',()=>{
  assert.equal(countryConfig('NL').source,'REGIS II');
@@ -43,4 +44,12 @@ test('Danish address responses retain refine results and require the declared CR
   const hits=await searchAddress('DK','Main');assert.equal(hits[0].refine,true);assert.equal(hits[1].refine,false);
   assert.deepEqual(await resolveDanishAddress('house'),{lat:56.1,lon:10.1,label:'Main street 1'});
  }finally{globalThis.fetch=priorFetch;globalThis.proj4=priorProj4;}
+});
+
+test('FOHM retries a transient timeout but not a valid empty response',async()=>{
+ let calls=0,retries=0;
+ const row={modelnavn:'Sjælland (DK-model)',name:'ks1',layernumber:1,data:[[0,2,-10]]};
+ const profile=await fetchFOHM(726133,6179366,{cache:false,timeouts:[10,10],retryDelayMs:0,onRetry:()=>retries++,fetchImpl:async()=>{if(++calls===1){const error=Error('signal timed out');error.name='TimeoutError';throw error;}return {ok:true,json:async()=>[row]};}});
+ assert.equal(profile.layers.length,1);assert.equal(calls,2);assert.equal(retries,1);
+ calls=0;await assert.rejects(fetchFOHM(726133,6179366,{cache:false,timeouts:[10,10],retryDelayMs:0,fetchImpl:async()=>{calls++;return {ok:true,json:async()=>[]};}}),/No model intervals/);assert.equal(calls,1);
 });
