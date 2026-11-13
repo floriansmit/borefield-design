@@ -1,6 +1,17 @@
 const $=id=>document.getElementById(id),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 let currency='EUR',exchange=7.46,rows=[],references=[],parameters=null,selected=null,annualView=false,worker=null,busy=false,revision=0,startRevision=0,geologyProvenance=null,preview=null,inspectionParameters=null,country='NL',geologyModule=null;
 const factor=()=>currency==='DKK'?exchange:1,fmt=(n,d=0)=>Number(n).toLocaleString(window.I18n?.locale||'en-GB',{maximumFractionDigits:d,minimumFractionDigits:d}),money=(n,d=0)=>fmt(n*factor(),d),unit=()=>currency;
+if(typeof document.createElement==='function'){
+  const ggsReturn=document.createElement('a');
+  ggsReturn.className='ggs-return';
+  ggsReturn.href='https://www.greengrowthscientific.com/';
+  ggsReturn.setAttribute('aria-label','Return to the Green Growth Scientific website');
+  ggsReturn.textContent='← GGS site';
+  document.querySelector('header').prepend(ggsReturn);
+  const ggsReturnStyle=document.createElement('style');
+  ggsReturnStyle.textContent='.ggs-return{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1px solid #b7c9bd;border-radius:8px;background:#eef3ee;color:#136a56;font-size:12px;font-weight:700;text-decoration:none;white-space:nowrap}.ggs-return:hover,.ggs-return:focus-visible{background:#136a56;color:white;outline:none}@media(max-width:560px){header{flex-wrap:wrap}.ggs-return{order:-1}}';
+  document.head.append(ggsReturnStyle);
+}
 const specs={demand:[['annual','Annual delivered heat, kWh',22000,1,2000000],['peak','Peak delivered heat, kW',10,.1,1000],['supply','Heating supply, °C',40,20,75],['eff','Carnot efficiency fraction',.45,.2,.65],['delta','Loop temperature drop, K',3,1,10],['peakHours','Peak duration, hours',6,1,72]],ground:[['t0','Surface ground temperature, °C',9,0,25],['gradient','Geothermal gradient, K/km',25,0,60],['rb','Borehole resistance, mK/W',.1,.02,.5],['radius','Borehole radius, m',.075,.025,.3]],layout:[['minDepth','Minimum depth, m',80,30,600],['maxDepth','Maximum depth, m',320,30,600],['step','Depth increment, m',10,5,100],['maxBores','Maximum boreholes',4,1,8],['spacing','Borehole spacing, m',8,3,50],['limit','Minimum cold fluid, °C',-3,-10,10]],economics:[['years','Project life, years',25,1,50],['price','Electricity, {money}/kWh',2/7.46,0,10],['discount','Real discount rate, %',3,0,15],['escalation','Real energy escalation, %',0,-5,10],['perBore','Setup per borehole, {money}',10000/7.46,0,1000000],['fixed','Heat pump & fixed cost, {money}',90000/7.46,0,2000000],['pumpFraction','Pump electricity / heat, %',1.5,0,10]]};
 const monetary=new Set(['price','perBore','fixed']);
 for(const [section,fields]of Object.entries(specs))$(section).innerHTML=fields.map(([id,label,v,min,max])=>`<label>${label.replace('{money}','<span class="money-unit">EUR</span>')}<input type="number" id="${id}" value="${v}" min="${min}" max="${max}" step="any" required ${monetary.has(id)?'data-money="true"':''}></label>`).join('');
